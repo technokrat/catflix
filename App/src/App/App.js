@@ -1,4 +1,5 @@
 import {ActivityPanels} from '@enact/moonstone/Panels';
+import {Header, Panel} from '@enact/moonstone/Panels';
 import Changeable from '@enact/ui/Changeable';
 import kind from '@enact/core/kind';
 import MoonstoneDecorator from '@enact/moonstone/MoonstoneDecorator';
@@ -20,7 +21,6 @@ const kittens = [
 	'Kitty'
 ];
 
-var conferences = [];
 
 
 
@@ -33,25 +33,38 @@ class AppBase extends React.Component {
 		kitten: PropTypes.number,
 		onNavigate: PropTypes.func,
 		onSelectKitten: PropTypes.func
+
 	};
 	
 	static defaultProps = {
 		index: 0,
-		kitten: 0
+		kitten: 0,
+		conferences: []
 	};
 
 	constructor() {
 	    super();
 	    this.onSelectKitten = this.onSelectKitten.bind(this);
+
+	        this.state = {
+      conferences: [],
+      isLoading: false,
+      error: null,
+    };
 	  }
 
 	componentDidMount() {
+		console.log("derp");
+		this.setState({ isLoading: true });
 		axios.get(API)
-		.then(function (response) {
-		    // handle success
-			conferences = response.data.conferences;
-		    console.log(conferences);
-		  });
+      .then(result => {console.log(result.data.conferences); this.setState({
+        conferences: result.data.conferences,
+        isLoading: false
+      })})
+      .catch(error => this.setState({
+        error,
+        isLoading: false
+      }));
 	}
 
 	onSelectKitten(ev) {
@@ -70,10 +83,20 @@ class AppBase extends React.Component {
 	}
 
 	render() {
-		let {index, kitten, onNavigate, ...rest} = this.props;
+		let {index, kitten, onNavigate, ...rest} = this.props; 
+		const { conferences, isLoading, error } = this.state;
+		console.log(conferences)
+		    if (error) {
+      return <p>{error.message}</p>;
+    }
+
+    if (isLoading) {
+	  return (	<><Header title="Catflix" />
+	  <p>Loading.... </p>	</>	)
+    }
 		return (
 			<ActivityPanels {...rest} index={index} onSelectBreadcrumb={onNavigate}>
-		 		<List onSelectKitten={this.onSelectKitten}>{conferences}</List>
+		 		<List onSelectKitten={this.onSelectKitten}>{conferences.map((item) => ({ item }))}</List>
 		 		<Detail name={kittens[kitten]} />
 		 	</ActivityPanels>
 	 	)

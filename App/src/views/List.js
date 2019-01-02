@@ -14,14 +14,14 @@ const ListBase = kind({
 		onSelectKitten: PropTypes.func
 	},
 
-	render: ({children, onSelectKitten, ...rest}) => (
+	render: ({children, onSelectKitten, ...rest}) => {console.log(children); return(
 		<Panel {...rest}>
-			<Header title="Kittens!" />
+			<Header title="Catflix" />
 			<Repeater childComponent={Kitten} indexProp="index" itemProps={{onSelect: onSelectKitten}}>
 				{children}
 			</Repeater>
 		</Panel>
-	)
+	)}
 });
 
 export default ListBase;

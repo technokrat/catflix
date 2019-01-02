@@ -9,7 +9,7 @@ const KittenBase = kind({
 	name: 'Kitten',
 
 	propTypes: {
-		children: PropTypes.string,
+		children: PropTypes.array,
 		index: PropTypes.number,
 		onSelect: PropTypes.func,
 		size: PropTypes.number
@@ -25,11 +25,13 @@ const KittenBase = kind({
 	},
 
 	computed: {
-		acronym: ({children}) => {
-			return children.acronym;
+		acronym: ({item}) => {
+			//return children.acronym;
+			return item.acronym;
 		},
-		img_url: ({children}) => {
-			return children.logo_url;
+		img_url: ({item}) => {
+			//return children.logo_url;
+			return item.logo_url;
 		}
 	},
 
@@ -44,10 +46,10 @@ const KittenBase = kind({
 	render: ({children, onSelect, acronym, img_url, ...rest}) => {
 		delete rest.index;
 		delete rest.size;
-		console.log(acronym);
+		delete rest.item;
 		return (
 			<div {...rest} onClick={onSelect}>
-				<img src={img_url} />
+				<img className={css.thumbnail} src={img_url} />
 				<div>{acronym}</div>
 			</div>
 		);
