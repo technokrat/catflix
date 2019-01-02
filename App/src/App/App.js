@@ -1,7 +1,6 @@
 import {ActivityPanels} from '@enact/moonstone/Panels';
-import {Header, Panel} from '@enact/moonstone/Panels';
+import {Header} from '@enact/moonstone/Panels';
 import Changeable from '@enact/ui/Changeable';
-import kind from '@enact/core/kind';
 import MoonstoneDecorator from '@enact/moonstone/MoonstoneDecorator';
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -35,7 +34,7 @@ class AppBase extends React.Component {
 		onSelectKitten: PropTypes.func
 
 	};
-	
+
 	static defaultProps = {
 		index: 0,
 		kitten: 0,
@@ -54,13 +53,12 @@ class AppBase extends React.Component {
 	  }
 
 	componentDidMount() {
-		console.log("derp");
 		this.setState({ isLoading: true });
 		axios.get(API)
-      .then(result => {console.log(result.data.conferences); this.setState({
+      .then(result => this.setState({
         conferences: result.data.conferences,
         isLoading: false
-      })})
+      }))
       .catch(error => this.setState({
         error,
         isLoading: false
@@ -83,9 +81,8 @@ class AppBase extends React.Component {
 	}
 
 	render() {
-		let {index, kitten, onNavigate, ...rest} = this.props; 
+		let {index, kitten, onNavigate, ...rest} = this.props;
 		const { conferences, isLoading, error } = this.state;
-		console.log(conferences)
 		    if (error) {
       return <p>{error.message}</p>;
     }
@@ -96,10 +93,10 @@ class AppBase extends React.Component {
     }
 		return (
 			<ActivityPanels {...rest} index={index} onSelectBreadcrumb={onNavigate}>
-		 		<List onSelectKitten={this.onSelectKitten}>{conferences.map((item) => ({ item }))}</List>
-		 		<Detail name={kittens[kitten]} />
-		 	</ActivityPanels>
-	 	)
+				<List onSelectKitten={this.onSelectKitten}>{conferences.map((item) => ({ item, key: item.acronym }))}</List>
+				<Detail name={kittens[kitten]} />
+			</ActivityPanels>
+		)
 	};
 }
 

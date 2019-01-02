@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 
 import Kitten from '../components/Kitten';
 
+import css from './List.less';
+
 const ListBase = kind({
 	name: 'List',
 
@@ -14,14 +16,18 @@ const ListBase = kind({
 		onSelectKitten: PropTypes.func
 	},
 
-	render: ({children, onSelectKitten, ...rest}) => {console.log(children); return(
+	styles: {
+		css
+	},
+
+	render: ({children, onSelectKitten, ...rest}) => (
 		<Panel {...rest}>
 			<Header title="Catflix" />
-			<Repeater childComponent={Kitten} indexProp="index" itemProps={{onSelect: onSelectKitten}}>
+			<Repeater className={css.scrollable} childComponent={Kitten} indexProp="index" itemProps={{onSelect: onSelectKitten}}>
 				{children}
 			</Repeater>
 		</Panel>
-	)}
+	)
 });
 
 export default ListBase;

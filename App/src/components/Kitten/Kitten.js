@@ -26,11 +26,11 @@ const KittenBase = kind({
 
 	computed: {
 		acronym: ({item}) => {
-			//return children.acronym;
+
 			return item.acronym;
 		},
 		img_url: ({item}) => {
-			//return children.logo_url;
+
 			return item.logo_url;
 		}
 	},
@@ -43,7 +43,7 @@ const KittenBase = kind({
 		}
 	},
 
-	render: ({children, onSelect, acronym, img_url, ...rest}) => {
+	render: ({onSelect, acronym, img_url, ...rest}) => {
 		delete rest.index;
 		delete rest.size;
 		delete rest.item;
