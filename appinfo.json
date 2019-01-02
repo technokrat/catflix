@@ -1,0 +1,10 @@
+{
+    "vendor": "My Company",
+    "largeIcon": "largeIcon.png",
+    "icon": "icon.png",
+    "main": "index.html",
+    "id": "com.domain.app",
+    "title": "catflix",
+    "type": "web",
+    "version": "0.0.1"
+}
