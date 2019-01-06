@@ -3,10 +3,10 @@ import React from 'react';
 import Spottable from '@enact/spotlight/Spottable';
 import PropTypes from 'prop-types';
 
-import css from './Kitten.less';
+import css from './Conference.less';
 
-const KittenBase = kind({
-	name: 'Kitten',
+const ConferenceBase = kind({
+	name: 'Conference',
 
 	propTypes: {
 		children: PropTypes.array,
@@ -21,13 +21,13 @@ const KittenBase = kind({
 
 	styles: {
 		css,
-		className: 'kitten'
+		className: 'conference'
 	},
 
 	computed: {
-		acronym: ({item}) => {
+		title: ({item}) => {
 
-			return item.acronym;
+			return item.title;
 		},
 		img_url: ({item}) => {
 
@@ -43,20 +43,20 @@ const KittenBase = kind({
 		}
 	},
 
-	render: ({onSelect, acronym, img_url, ...rest}) => {
+	render: ({onSelect, title, img_url, ...rest}) => {
 		delete rest.index;
 		delete rest.size;
 		delete rest.item;
 		return (
 			<div {...rest} onClick={onSelect}>
 				<img className={css.thumbnail} src={img_url} />
-				<div>{acronym}</div>
+				<div>{title}</div>
 			</div>
 		);
 	}
 });
 
-const Kitten = Spottable(KittenBase);
+const Conference = Spottable(ConferenceBase);
 
-export default Kitten;
-export {Kitten, KittenBase};
+export default Conference;
+export {Conference, ConferenceBase};

@@ -25,13 +25,13 @@ const kittens = [
 
 
 class AppBase extends React.Component {
-	static displayName = 'Kittens';
+	static displayName = 'CatflixApp';
 
 	static propTypes = {
 		index: PropTypes.number,
 		kitten: PropTypes.number,
 		onNavigate: PropTypes.func,
-		onSelectKitten: PropTypes.func
+		onSelectConference: PropTypes.func
 
 	};
 
@@ -43,7 +43,7 @@ class AppBase extends React.Component {
 
 	constructor() {
 	    super();
-	    this.onSelectKitten = this.onSelectKitten.bind(this);
+	    this.onSelectConference = this.onSelectConference.bind(this);
 
 	        this.state = {
       conferences: [],
@@ -65,9 +65,9 @@ class AppBase extends React.Component {
       }));
 	}
 
-	onSelectKitten(ev) {
-		if (this.props.onSelectKitten) {
-			this.props.onSelectKitten({
+	onSelectConference(ev) {
+		if (this.props.onSelectConference) {
+			this.props.onSelectConference({
 				kitten: ev.index
 			});
 		}
@@ -93,7 +93,7 @@ class AppBase extends React.Component {
     }
 		return (
 			<ActivityPanels {...rest} index={index} onSelectBreadcrumb={onNavigate}>
-				<List onSelectKitten={this.onSelectKitten}>{conferences.map((item) => ({ item, key: item.acronym }))}</List>
+				<List onSelectConference={this.onSelectConference}>{conferences.map((item) => ({ item, key: item.acronym }))}</List>
 				<Detail name={kittens[kitten]} />
 			</ActivityPanels>
 		)
@@ -103,7 +103,7 @@ class AppBase extends React.Component {
 const App = Changeable(
 		{prop: 'index', change: 'onNavigate'},
 		Changeable(
-			{prop: 'kitten', change: 'onSelectKitten'},
+			{prop: 'kitten', change: 'onSelectConference'},
 				MoonstoneDecorator(AppBase)
 			)
 		);

@@ -4,7 +4,7 @@ import React from 'react';
 import Repeater from '@enact/ui/Repeater';
 import PropTypes from 'prop-types';
 
-import Kitten from '../components/Kitten';
+import Conference from '../components/Conference';
 
 import css from './List.less';
 
@@ -13,17 +13,17 @@ const ListBase = kind({
 
 	propTypes: {
 		children: PropTypes.array,
-		onSelectKitten: PropTypes.func
+		onSelectConference: PropTypes.func
 	},
 
 	styles: {
 		css
 	},
 
-	render: ({children, onSelectKitten, ...rest}) => (
+	render: ({children, onSelectConference, ...rest}) => (
 		<Panel {...rest}>
 			<Header title="Catflix" />
-			<Repeater className={css.scrollable} childComponent={Kitten} indexProp="index" itemProps={{onSelect: onSelectKitten}}>
+			<Repeater className={css.scrollable} childComponent={Conference} indexProp="index" itemProps={{onSelect: onSelectConference}}>
 				{children}
 			</Repeater>
 		</Panel>
