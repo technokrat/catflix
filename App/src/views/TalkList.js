@@ -8,32 +8,6 @@ import Talk from '../components/Talk';
 
 import css from './List.less';
 
-// const TalkListBase = kind({
-// 	name: 'TalkList',
-
-// 	propTypes: {
-// 		url: PropTypes.string,
-// 		onSelectTalk: PropTypes.func
-// 	},
-
-// 	styles: {
-// 		css
-// 	},
-
-// 	render: ({children, onSelectTalk, ...rest}) => (
-// 		<Panel {...rest}>
-// 			<Header title="Catflix" />
-// 			<Repeater className={css.scrollable} childComponent={Talk} indexProp="index" itemProps={{onSelect: onSelectTalk}}>
-// 				{children}
-// 			</Repeater>
-// 		</Panel>
-// 	)
-// });
-
-// export default TalkListBase;
-// export {TalkListBase as TalkList, TalkListBase};
-
-
 class TalkListBase extends React.Component {
 	static displayName = 'TalkList';
 
