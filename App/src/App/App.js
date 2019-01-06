@@ -11,14 +11,6 @@ import List from '../views/List';
 
 const API = 'https://api.media.ccc.de/public/conferences';
 
-const kittens = [
-	'Garfield',
-	'Nermal',
-	'Simba',
-	'Nala',
-	'Tiger',
-	'Kitty'
-];
 
 
 
@@ -29,7 +21,7 @@ class AppBase extends React.Component {
 
 	static propTypes = {
 		index: PropTypes.number,
-		kitten: PropTypes.number,
+		selectedConference: PropTypes.number,
 		onNavigate: PropTypes.func,
 		onSelectConference: PropTypes.func
 
@@ -37,7 +29,8 @@ class AppBase extends React.Component {
 
 	static defaultProps = {
 		index: 0,
-		kitten: 0,
+		selectedConference: 0,
+		selectedConferenceUrl: "",
 		conferences: []
 	};
 
@@ -68,7 +61,7 @@ class AppBase extends React.Component {
 	onSelectConference(ev) {
 		if (this.props.onSelectConference) {
 			this.props.onSelectConference({
-				kitten: ev.index
+				selectedConference: ev.index
 			});
 		}
 
@@ -81,11 +74,19 @@ class AppBase extends React.Component {
 	}
 
 	render() {
-		let {index, kitten, onNavigate, ...rest} = this.props;
+		let {index, selectedConference, onNavigate, ...rest} = this.props;
 		const { conferences, isLoading, error } = this.state;
+		let url = "";
 		    if (error) {
       return <p>{error.message}</p>;
-    }
+	}
+	
+	try {
+		url=conferences[selectedConference].url;
+	}
+	catch(e) {
+		url=""
+	}
 
     if (isLoading) {
 	  return (	<><Header title="Catflix" />
@@ -94,7 +95,7 @@ class AppBase extends React.Component {
 		return (
 			<ActivityPanels {...rest} index={index} onSelectBreadcrumb={onNavigate}>
 				<List onSelectConference={this.onSelectConference}>{conferences.map((item) => ({ item, key: item.acronym }))}</List>
-				<Detail name={kittens[kitten]} />
+				<Detail url={url} />
 			</ActivityPanels>
 		)
 	};
@@ -103,7 +104,7 @@ class AppBase extends React.Component {
 const App = Changeable(
 		{prop: 'index', change: 'onNavigate'},
 		Changeable(
-			{prop: 'kitten', change: 'onSelectConference'},
+			{prop: 'selectedConference', change: 'onSelectConference'},
 				MoonstoneDecorator(AppBase)
 			)
 		);
