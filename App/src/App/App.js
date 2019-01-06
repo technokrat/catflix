@@ -6,8 +6,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-import Detail from '../views/Detail';
+
 import List from '../views/List';
+import TalkList from '../views/TalkList';
 
 const API = 'https://api.media.ccc.de/public/conferences';
 
@@ -22,21 +23,24 @@ class AppBase extends React.Component {
 	static propTypes = {
 		index: PropTypes.number,
 		selectedConference: PropTypes.number,
+		selectedTalk: PropTypes.number,
 		onNavigate: PropTypes.func,
-		onSelectConference: PropTypes.func
+		onSelectConference: PropTypes.func,
+		onSelectTalk: PropTypes.func
 
 	};
 
 	static defaultProps = {
 		index: 0,
 		selectedConference: 0,
-		selectedConferenceUrl: "",
+		selectedTalk: 0,
 		conferences: []
 	};
 
 	constructor() {
 	    super();
-	    this.onSelectConference = this.onSelectConference.bind(this);
+		this.onSelectConference = this.onSelectConference.bind(this);
+		this.onSelectTalk = this.onSelectTalk.bind(this);
 
 	        this.state = {
       conferences: [],
@@ -73,6 +77,22 @@ class AppBase extends React.Component {
 		}
 	}
 
+	onSelectTalk(ev) {
+		console.log(ev);
+		// if (this.props.onSelectConference) {
+		// 	this.props.onSelectConference({
+		// 		selectedConference: ev.index
+		// 	});
+		// }
+
+		// // navigate to the detail panel on selection
+		// if (this.props.onNavigate) {
+		// 	this.props.onNavigate({
+		// 		index: 1
+		// 	});
+		// }
+	}
+
 	render() {
 		let {index, selectedConference, onNavigate, ...rest} = this.props;
 		const { conferences, isLoading, error } = this.state;
@@ -95,7 +115,7 @@ class AppBase extends React.Component {
 		return (
 			<ActivityPanels {...rest} index={index} onSelectBreadcrumb={onNavigate}>
 				<List onSelectConference={this.onSelectConference}>{conferences.map((item) => ({ item, key: item.acronym }))}</List>
-				<Detail url={url} />
+				<TalkList onSelectTalk={this.onSelectTalk} url={url}/>
 			</ActivityPanels>
 		)
 	};
@@ -105,7 +125,10 @@ const App = Changeable(
 		{prop: 'index', change: 'onNavigate'},
 		Changeable(
 			{prop: 'selectedConference', change: 'onSelectConference'},
-				MoonstoneDecorator(AppBase)
+			Changeable(
+				{prop: 'selectedTalk', change: 'onSelectTalk'},
+					MoonstoneDecorator(AppBase)
+				)
 			)
 		);
 
