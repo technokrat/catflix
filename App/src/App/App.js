@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 
-import List from '../views/List';
+import ConferenceList from '../views/ConferenceList';
 import TalkList from '../views/TalkList';
 
 const API = 'https://api.media.ccc.de/public/conferences';
@@ -114,7 +114,7 @@ class AppBase extends React.Component {
     }
 		return (
 			<ActivityPanels {...rest} index={index} onSelectBreadcrumb={onNavigate}>
-				<List onSelectConference={this.onSelectConference}>{conferences.map((item) => ({ item, key: item.acronym }))}</List>
+				<ConferenceList onSelectConference={this.onSelectConference}>{conferences.map((item) => ({ item, key: item.acronym }))}</ConferenceList>
 				<TalkList onSelectTalk={this.onSelectTalk} url={url}/>
 			</ActivityPanels>
 		)

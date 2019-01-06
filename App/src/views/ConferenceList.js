@@ -8,8 +8,8 @@ import Conference from '../components/Conference';
 
 import css from './List.less';
 
-const ListBase = kind({
-	name: 'List',
+const ConferenceListBase = kind({
+	name: 'ConferenceList',
 
 	propTypes: {
 		children: PropTypes.array,
@@ -30,5 +30,5 @@ const ListBase = kind({
 	)
 });
 
-export default ListBase;
-export {ListBase as List, ListBase};
+export default ConferenceListBase;
+export {ConferenceListBase as ConferenceList, ConferenceListBase};
