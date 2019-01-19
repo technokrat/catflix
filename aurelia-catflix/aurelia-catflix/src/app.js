@@ -1,13 +1,17 @@
-import {Todo} from './todo';
 import {HttpClient} from 'aurelia-fetch-client';
 const API = 'https://api.media.ccc.de/public/conferences';
 
 export class App {
   constructor() {
-    this.heading = "Todos";
-    this.todos = [];
+    this.heading = "Catflix";
     this.conferences = [];
+    this.events = [];
+    this.eventdetail = [];
     this.todoDescription = '';
+    this.conferencescreen = true;
+    this.talkscreen = false;
+    this.detailscreen = false;
+    this.videoscreen = false;
     let client = new HttpClient();
 
     client.fetch(API)
@@ -24,18 +28,52 @@ export class App {
 
   }
 
-  addTodo() {
-    if (this.todoDescription) {
-      this.todos.push(new Todo(this.todoDescription));
-      this.todoDescription = '';
-    }
+  showConference(url){
+    let client = new HttpClient();
+    console.log(url);
+    client.fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      this.events = data;
+      console.log(data);
+      this.conferencescreen = false;
+      this.videoscreen = false;
+      this.talkscreen = true;
+      
+    });
+    
+
+
   }
 
-  removeTodo(todo) {
-    let index = this.todos.indexOf(todo);
-    if (index !== -1) {
-      this.todos.splice(index, 1);
-    }
+  showEvent(url){
+    console.log(url);
+    let client = new HttpClient();
+    client.fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      this.eventdetail = data;
+      console.log(data);
+      this.conferencescreen = false;
+      this.talkscreen = false;
+      this.detailscreen = true;
+      this.videoscreen = false;
+      
+    });
+
+
   }
+
+  showVideo(url,width,height,mime){
+
+    this.video = { "url":url, "width":width, "height":height, "mime": mime };
+    this.conferencescreen = false;
+    this.talkscreen = false;
+    this.detailscreen = false;
+    this.videoscreen = true;
+
+  }
+
+
 }
 
