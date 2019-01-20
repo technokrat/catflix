@@ -1,13 +1,6 @@
-@font-face {
-    font-family: 'ZCOOL';
-
-    src: url('zcool.ttf')  format('truetype'), /* Safari, Android, iOS */
-
-  }
-
 body {
     background-color: black;
-    font-family: 'ZCOOL', Helvetica, sans-serif;
+    font-family: Helvetica, sans-serif;
     display: flex;
     flex-direction: row;
     height: 100vh;
@@ -35,6 +28,8 @@ div.list {
   }
 
   div.listentry {
+    border-style: inset;
+    border: 2px solid black;
     height: 10vw;
     /* border: 2px solid #353535;
     background-image: linear-gradient(224deg, #1b1b1b 0%, #450a46 100%); */
@@ -56,6 +51,7 @@ div.listentry:focus{
 }
 
 div.listentry:hover{
+    cursor: pointer;
     border-style: inset;
     border: 2px solid #dc3545;
 }
@@ -86,28 +82,8 @@ ul.list {
     overflow: hidden;
 }
 
-ul.list li:hover {
-    cursor: pointer;
-}
-
-ul.list li:focus {
-    outline: none;
-}
-
 span.tiletext {
     width: 66%;
-}
-
-ul.list span:focus {
-    outline: none;
-}
-
-ul.list li:focus span {
-    font-size: 36pt;
-    overflow: visible;
-    
-    text-decoration: underline;
-    text-decoration-color: #dc3545;
 }
 
 img.big-thumb {
@@ -126,6 +102,7 @@ img.thumb {
 
 video.big-video {
     margin: auto;
+    width:100%;
 }
 
 div.thumbcontainer {

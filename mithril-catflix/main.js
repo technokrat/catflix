@@ -123,9 +123,9 @@ var Conference = {
                 focusedItem: vnode.state.focusedItem,
                 enter: (item) => m.route.set('/cat/' + vnode.attrs.conferenceAcronym + '/' + item.guid),
                 back: () => m.route.set('/cat'),
-                item: (item, _i) => m('span[tabIndex=-1]', {
+                item: (item, _i) => m('div.thumbcontainer[tabIndex=-1]', {
                                         onclick: (e) => e.target.parentNode.focus()
-                                    },  item.title)
+                                    },  m('img.thumb', {src:item.thumb_url}), m('span.tiletext',item.title))
             }),
             vnode.state.focusedItem() != undefined
                 ? m('img.big-thumb[tabIndex=-1]', {
@@ -159,9 +159,9 @@ var Event = {
             focusedItem: vnode.state.focusedItem,
             enter: (item) =>  m.route.set('/cat/' + vnode.attrs.conferenceAcronym + '/' + vnode.attrs.eventGuid + '/' + item.id),
             back: () => m.route.set('/cat/' + vnode.attrs.conferenceAcronym),
-            item: (item, _i) => m('span[tabIndex=-1]', {
+            item: (item, _i) => m('div.thumbcontainer[tabIndex=-1]', {
                                     onclick: (e) => e.target.parentNode.focus()
-                                }, item.language + ' ' + item.mime_type)
+                                }, item.language + ' ' + item.mime_type + ' ' + item.width + 'x' + item.height)
         })
     }
 }
