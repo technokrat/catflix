@@ -1,3 +1,2 @@
-mithril-catflix/node_modules/
-mithril-catflix/js/mithril.js.map
-mithril-catflix/js/
+node_modules/
+dist/

@@ -1,0 +1,31 @@
+{
+  "name": "catflix",
+  "version": "0.0.1",
+  "description": "catflix is a chaosflix inspired LG webOS client app for your daily media.ccc.de dose.",
+  "main": "src/main.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src/js/ --out-dir dist/ --source-maps"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/technokrat-llc/catflix.git"
+  },
+  "keywords": [
+    "webOS"
+  ],
+  "author": "Technokrat GmbH <contact@technokrat.ch>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/technokrat-llc/catflix/issues"
+  },
+  "homepage": "https://github.com/technokrat-llc/catflix#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5"
+  }
+}

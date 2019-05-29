@@ -1,9 +1,9 @@
 {
-    "vendor": "My Company",
+    "vendor": "Technokrat GmbH",
     "largeIcon": "largeIcon.png",
     "icon": "icon.png",
     "main": "index.html",
-    "id": "com.domain.app",
+    "id": "catflix.app",
     "title": "catflix",
     "type": "web",
     "version": "0.0.1"
