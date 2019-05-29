@@ -28,5 +28,3 @@ npm run build
 ```
 
 Then push the application via the IDE onto your TV.
-
-## Licesnse
