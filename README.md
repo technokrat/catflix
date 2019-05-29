@@ -2,7 +2,9 @@
 	<img src="./doc/catflix_splash.png" width="600" />
 </p>
 
-`catflix` is a [chaosflix](https://github.com/NiciDieNase/chaosflix) inspired LG webOS client app for your daily [media.ccc.de](https://media.ccc.de) dose. Enjoy the pleasant comfort of binge watching through your favourite congress talks from your couch on your big flatscreen.
+`catflix` is a [chaosflix](https://github.com/NiciDieNase/chaosflix) inspired LG webOS client app for your daily [media.ccc.de](https://media.ccc.de) dose. Enjoy the pleasant comfort of binge watching through your favourite congress talks from your couch on your big flatscreen. We wrote `catflix` on a rainy weekend and are thankful for any contributions and suggestions you might have.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Quickstart
 
@@ -26,3 +28,5 @@ npm run build
 ```
 
 Then push the application via the IDE onto your TV.
+
+## Licesnse
